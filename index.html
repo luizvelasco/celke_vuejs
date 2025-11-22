@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Celke - Primeiro exemplo VUE.JS</title>
+    <!-- Importar Vue.js via CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+
+   <div id="app">
+
+        <h1>Diretivas básicas do Vue.js</h1>
+        
+        <!-- V-if e v-else -->
+         <div>
+            <h2>exemplo v-if e v-else</h2>
+            <p v-if="loggedIn">Bem-vindo, {{ user }}!</p>
+            <p v-else>Você precisa fazer o login</p>
+            <button @click="loggedIn = !loggedIn">{{ loggedIn ? 'Sair' : 'Fazer login' }}</button>
+         </div>
+
+        <!-- v-for -->
+        <div>
+            <h2>Exemplo de v-for</h2>
+            <ul>
+                <li v-for="(item, index) in items" :key="index">
+                    {{ index + 1 }} - {{ item }}
+                </li>
+            </ul>
+        </div>
+
+        <!-- v-bind -->
+         <div>
+            <h2>Exemplo com v-bind</h2>
+            <a v-bind:href="link" target="_blank">Visitar o site oficial</a><br><br>
+            <a :href="link" target="_blank">Visitar o site oficial</a>
+         </div>
+       
+   </div>
+
+   <script>
+        const app = Vue.createApp({
+           data(){
+            return {
+                loggedIn: false,
+                user: 'Luiz',
+                items: ['Aprender Vue', 'Estudar Laravel', 'Criar um projeto'],
+                link: 'https://vuejs.org',
+            }
+           }
+        });
+
+         app.mount('#app');
+
+   </script>
+    
+</body>
+</html>
