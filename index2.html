@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Celke - Primeiro exemplo VUE.JS</title>
+    <!-- Importar Vue.js via CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+
+   <div id="app">
+
+        <!-- Exemplo de método com contador -->
+        <div>
+            <h1>Eventos com Vue</h1>
+            <h2>Contador</h2>
+            <p>Você clicou {{ contador }} vezes.</p>
+            <button v-on:click="incrementar">Clique aqui</button><br><br>
+            <button @click="incrementar">Clique aqui</button>
+        </div>
+
+        <!-- Exemplo de v-if e v-else -->
+        <div>
+            <p v-if="loggedIn">Bem vindo, {{ user }}</p>
+            <p v-else=>Você precisa fazer o login.</p>
+
+            <!-- Botões com eventos -->
+             <button v-if="!loggedIn" @click="fazerLogin">Fazer Login</button>
+             <button v-else @click="fazerLogout">Sair</button>
+        </div>
+        
+   </div>
+
+   <script>
+        const app = Vue.createApp({
+            data(){
+                return {
+                    contador: 0,
+                    loggedIn: false,
+                    user: "Luiz",
+                }
+            },
+            methods:{
+                incrementar(){
+                    this.contador++
+                },
+                fazerLogin(){
+                    this.loggedIn = true;
+                },
+                fazerLogout(){
+                    this.loggedIn = false;
+                }
+            },
+        }).mount('#app');
+
+   </script>
+    
+</body>
+</html>
