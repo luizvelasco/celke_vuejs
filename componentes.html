@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Celke - Primeiro exemplo VUE.JS</title>
+    <!-- Importar Vue.js via CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+
+   <div id="app">
+    <h1>Componentes do Vue.js</h1>
+    <p>Exemplo de componentes reutilizávesi</p>
+
+    <!-- Reutilizando o mesmo componente -->
+     <usuario-cartao></usuario-cartao>
+     <usuario-cartao></usuario-cartao>
+     <usuario-cartao></usuario-cartao>
+       
+   </div>
+
+   <script>
+        const app = Vue.createApp({});
+
+        // Criar um componente local chamado usuario-cartao
+        app.component('usuario-cartao', {
+            template: `<div style="border: 1px solid #ccc; border-radius: 8px; padding: 10px; margin-botton: 10px; width: 250px;"><h3>{{ nome }}</h3><p>Status: {{ seguindo ? 'Seguindo' : 'Não seguindo' }}</p><button @click="alterarSeguir">{{ seguindo ? 'Deixar de seguir' : 'Seguir' }}</button></div>`,
+            data(){
+                return {
+                    nome: 'Luiz',
+                    seguindo: false,
+                }
+            },
+            methods: {
+                alterarSeguir(){
+                    this.seguindo = !this.seguindo;
+                }
+            },
+        });
+
+        // Montar a aplicação
+        app.mount('#app');
+
+   </script>
+    
+</body>
+</html>
