@@ -10,14 +10,66 @@
 <body>
 
    <div id="app">
+        <h1>Ligação de Dados com v-model</h1>
+        
+        <!-- Input de texto -->
+         <div>
+            <label for="nome">Digite seu nome:</label>
+            <input type="text" id="nome" v-model="nome" placeholder="Seu nome aqui">
+            <p>Olá, {{ nome || 'visitante' }}</p>
+         </div>
+         <hr>
 
-        
-        
+         <!-- Checkbox -->
+          <div>
+            <label>
+                <input type="checkbox" v-model="aceito">Aceito os termos de uso
+            </label>
+            <p>Status: {{ aceito ? 'Aceito' : 'Não aceito' }}</p>
+          </div>
+          <hr>
+
+          <!-- Select -->
+           <div>
+                <label for="linguagem">Escolha uma linguagem:</label>
+                <select id="linguagem" v-model="linguagem">
+                    <option value="">Selecione</option>
+                    <option value="Vue.js">Vue.js</option>
+                    <option value="Laravel">Laravel</option>
+                    <option value="CSS">CSS</option>
+                </select>
+
+                <p v-if="linguagem">Você escolheu: {{ linguagem }}</p>
+           </div>
+           <hr>
+
+         <!-- Botao de envio -->
+          <div>
+            <button @click="enviarFormulario">Enviar</button>
+            <p v-if="mensagem">{{ mensagem }}</p>
+          </div>
+          
    </div>
 
    <script>
         const vm = Vue.createApp({
-            
+            data() {
+                return {
+                    nome: '',
+                    mensagem: '',
+                    aceito: false,
+                    linguagem: '',
+                }
+            },
+            methods: {
+                enviarFormulario(){
+                    if(!this.nome || !this.aceito || !this.linguagem){
+                        this.mensagem = 'Por favor preecha todos os campos';
+                    }else{
+                        this.mensagem = `Obrigado, ${this.nome}! Você escolheu ${this.linguagem}`;
+                    }
+                }
+            },
         }).mount('#app');
 
    </script>
